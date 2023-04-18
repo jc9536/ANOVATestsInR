@@ -1,15 +1,15 @@
-# Assignment #$ - ANOVA Tests in R
 ---
-author: "Jaimie Chin"   
-date: "2023-04-18"   
-output: github_document   
+title: "Assignment_4"
+author: "Jaimie Chin"
+date: "2023-04-18"
+output: github_document
 ---
 
-```r
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```r
+```{r, echo = T, error=FALSE, message=FALSE}
 # Load packages 
 library(tidyverse)
 ```
@@ -26,14 +26,14 @@ The researcher wants to compare the number of days people in each of these 4 gro
 
 Run a one-way ANOVA in R. 
 
-```r
+```{r}
 # Load the dataset from .csv 
 filepath = 'data/data_assignment4_q1.csv'
 df_1 = read_csv(filepath, show_col_types = FALSE)
 df_1
 ```
 
-```r
+```{r}
 # Run a one way ANOVA of the dataset 
 res.aov = aov(DV ~ group, data = df_1)
 summary(res.aov)
@@ -57,9 +57,8 @@ Based on the results of the omnibus ANOVA test, we can conclude that there is st
 ## 6. Should we run a post-hoc test? Why or why not? (2 pts)
 Yes, we should run a post-hoc test. The output of the ANOVA test only indicates that there are significant differences among the groups, but it does not indicate which specific groups are different. Therefore, a post-hoc test would be necessary to determine the pairwise differences between groups and to identify which specific groups have significantly different means.
 
-## 7. Regardless of your response in Part 6, run a post-hoc pairwise comparison. What do the pairwise comparisons suggest? That is, what can you say about the different groups and their impact on developing regular exercise habits. Note: `emmeans()` automatically applies an adjustment for multiple comparisons, so you can interpret the p values using the typical .05 threshold. (2 pts)
-
-```r
+## 7. Regardless of your response in Part 6, run a post-hoc pairwise comparison. What do the pairwise comparisons suggest? That is, what can you say about the different groups and their impact on developing regular exercise habits. Note: `emmeans()` automatically applies an adjustment for multiple comparisons, so you can interpret the p values using the typical .05 threshold. (2 pts) 
+```{r}
 # Run a TukeyHSD post-hoc test of the one-way ANOVA
 TukeyHSD(res.aov)
 ```
@@ -89,13 +88,13 @@ Import the data into RStudio. I recommend using the graphic interface to import 
 
 Run a two-way ANOVA in R. 
 
-```r
+```{r}
 filepath = 'data/data_assignment4_q2.csv'
 df_2 = read_csv(filepath, show_col_types = FALSE)
 df_2
 ```
 
-```r
+```{r}
 # Run a two-way ANOVA of the dataset 
 res.taov = aov(DV ~ IV1 * IV2, data=df_2)
 summary(res.taov)
